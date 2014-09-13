@@ -1,0 +1,8 @@
+---
+
+- name: Create the orluke user
+  user:
+    name: orluke
+    groups: sudo
+    append: yes
+    state: present

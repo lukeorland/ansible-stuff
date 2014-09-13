@@ -1,0 +1,36 @@
+---
+# This playbook deploys the whole application stack in this site.  
+
+- name: configure and deploy the ubuntu command-line dev boxes
+  hosts: ubuntu_dev_cli_boxes
+  user: root
+
+  roles:
+    - ubuntu_dev_cli
+
+- name: configure and deploy the debian command-line dev boxes
+  hosts: debian_dev_cli_boxes
+  user: root
+
+  roles:
+    - debian_dev_cli
+
+# Make sure to:
+#   ansible-galaxy install avanov.pyenv
+# Make sure to add these to master's env:
+#   export ANSIBLE_TRANSPORT="ssh"
+#   export  ANSIBLE_SSH_ARGS="-o ForwardAgent=yes -o StrictHostKeyChecking=no"
+# Make sure to forwardagent.
+# Make sure to ssh into target and do `ssh git@github.com` to add github to the
+# list of known hosts.
+# TODO: Add orluke user (as a sudoer).
+- hosts: servers
+  roles:
+    - {role: avanov.pyenv,
+       pyenv_path: "{{ ansible_env.HOME }}/pyenv",
+       #pyenv_owner: "{{ ansible_env.USER }}",
+       pyenv_owner: orluke,
+       pyenv_python_versions: ["3.4.1", "2.7.8"],
+       pyenv_virtualenvs: [
+         { venv_name: "latest_v3", py_version: "3.4.1" },
+         { venv_name: "latest_v2", py_version: "2.7.8" }]}

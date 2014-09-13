@@ -1,0 +1,6 @@
+---
+
+#- apt_repository: repo='deb http://security.debian.org/ wheezy/updates main' state=absent
+#- apt_repository: repo='deb http://ftp.us.debian.org/debian sid main contrib non-free' state=present
+- apt_repository: repo='deb http://ftp.us.debian.org/debian sid contrib non-free' state=absent
+- apt_repository: repo='deb http://ftp.us.debian.org/debian sid main contrib non-free' state=present
