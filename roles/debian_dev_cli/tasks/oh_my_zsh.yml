@@ -10,17 +10,28 @@
    - git-core
 
 - name: Clone oh-my-zsh repo
-  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ zsh_user }}/.oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: /home/{{ zsh_user }}/.oh-my-zsh
+    update: no
+    accept_hostkey: yes
+  register: oh_my_zsh_repo
 
 - name: Set zsh as default shell
   user: name={{ zsh_user }} shell=/bin/zsh
 
-- name: Symlink the rc file
-  file:
-    src: .oh-my-zsh/templates/zshrc.zsh-template
-    dest: /home/{{ zsh_user }}/.zshrc
-    state: link
-    force: yes
+- name: Remove the old version of the file
+  file: /home/{{ zsh_user }}/.zshrc
+  args:
+    state: absent
+  when: oh_my_zsh_repo.changed
+
+- name: Recopy the rc file
+  shell: cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+  args:
+    creates: .zshrc
+    chdir: /home/{{ zsh_user }}
+  register: oh_my_zsh_rc
 
 - name: Set the theme
   lineinfile:
@@ -28,3 +39,4 @@
     regexp: '^ZSH_THEME=".*"$'
     line: 'ZSH_THEME={{ zsh_theme }}'
     state: present
+  when: oh_my_zsh_rc.changed
