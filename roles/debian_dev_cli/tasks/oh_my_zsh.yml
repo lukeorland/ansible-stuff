@@ -1,0 +1,30 @@
+---
+## Install Oh-my-zsh
+# Edited from: https://github.com/RaymiiOrg/ansible/blob/50ff2d6cb3de2133a312ebcf3501f137ccb31dd5/oh-my-zsh/ohmyzsh.yml
+
+- name: Install git and zsh
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+   - git
+   - zsh
+   - git-core
+
+- name: Clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ zsh_user }}/.oh-my-zsh
+
+- name: Set zsh as default shell
+  user: name={{ zsh_user }} shell=/bin/zsh
+
+- name: Symlink the rc file
+  file:
+    src: .oh-my-zsh/templates/zshrc.zsh-template
+    dest: /home/{{ zsh_user }}/.zshrc
+    state: link
+    force: yes
+
+- name: Set the theme
+  lineinfile:
+    dest: /home/{{ zsh_user }}/.zshrc
+    regexp: '^ZSH_THEME=".*"$'
+    line: 'ZSH_THEME={{ zsh_theme }}'
+    state: present

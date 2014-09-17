@@ -2,3 +2,4 @@
 - include: sid.yml
 - include: users.yml
 - include: packages.yml
+- include: oh_my_zsh.yml
