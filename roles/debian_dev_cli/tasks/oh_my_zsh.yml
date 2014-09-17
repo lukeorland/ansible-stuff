@@ -21,8 +21,8 @@
   user: name={{ zsh_user }} shell=/bin/zsh
 
 - name: Remove the old version of the file
-  file: /home/{{ zsh_user }}/.zshrc
-  args:
+  file:
+    dest: /home/{{ zsh_user }}/.zshrc
     state: absent
   when: oh_my_zsh_repo.changed
 
