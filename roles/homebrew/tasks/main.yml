@@ -1,4 +1,7 @@
 ---
+# Note: If things don't quite work right, e.g. MacVim installing without Python
+# 2 support, you may need to run:
+#   xcode-select --install
 
 - name: Install homebrew
   script: install_homebrew.sh creates=/usr/local/bin/brew
@@ -33,11 +36,7 @@
 - name: Install MacVim
   homebrew:
     install_options: >
-      --custom-icons
-      --override-system-vim
-      --with-lua
-      --with-luajit
-      --with-python3
+      custom-icons,override-system-vim,with-lua,with-luajit,enable-pythoninterp,with-python-config-dir=/usr/lib/python2.7/config
     name: macvim
     state: latest
     update_homebrew: yes
