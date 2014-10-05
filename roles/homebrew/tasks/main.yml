@@ -29,3 +29,16 @@
     line: ZSH_THEME="steeef"
     regexp: ZSH_THEME=.*
     dest: "~{{ mac_user }}/.zshrc"
+
+- name: Install MacVim
+  homebrew:
+    install_options: >
+      --custom-icons
+      --override-system-vim
+      --with-lua
+      --with-luajit
+      --with-python3
+    name: macvim
+    state: latest
+    update_homebrew: yes
+  register: install_homebrew
