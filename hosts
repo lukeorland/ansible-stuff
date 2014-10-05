@@ -1,3 +1,6 @@
 [debian_dev_cli_boxes]
 itchorystem
 vagrant-debian ansible_ssh_host=localhost ansible_ssh_port=2223
+
+[pimopidy]
+pimopidy.local
