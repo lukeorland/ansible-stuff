@@ -1,0 +1,7 @@
+---
+
+- name: play test sound
+  shell: aplay /usr/share/sounds/alsa/Front_Center.wav
+
+- name: start mopidy
+  shell: mopidy

@@ -36,10 +36,10 @@
       }
 
 - name: Configure and deploy Raspberry Pi home media player
-  hosts: pimopidy
+  hosts: mopidypi
   sudo: yes
   remote_user: pi
 
   roles:
-    - avahi
-    #- mopidy
+    #- ntp
+    - mopidypi
