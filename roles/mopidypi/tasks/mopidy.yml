@@ -19,14 +19,8 @@
   apt: name=mopidy state=latest
   notify: start mopidy
 
-#- dpkg_reconfigure:
-#    pkg: mopidy
-#    answers:
-#      slapd/password2: $ldap_pass
-#      slapd/password1: $ldap_pass
-#      slapd/invalid_config: true
-#      shared/organization: $ldap_org
-#      slapd/no_configuration: false
-#      slapd/purge_database: false
-#      slapd/domain: $ldap_domain
-#      slapd/backend: HDB
+- name: Configure mopidy to start at boot.
+  dpkg_reconfigure:
+    pkg: mopidy
+    answers:
+      mopidy/daemon: true
