@@ -58,3 +58,13 @@
   with_items:
     - git
     - gh
+
+- name: Permissions for /usr/local
+  file:
+    mode: 0775
+    path: /usr/local
+
+- name: Permissions for /Library/Caches/Homebrew
+  file:
+    mode: 0775
+    path: /usr/local
