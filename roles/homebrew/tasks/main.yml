@@ -48,5 +48,13 @@
     state: latest
   with_items:
     - ssh-copy-id
+    - tree
+    - wget
+
+- name: Remove tools
+  homebrew:
+    name: "{{ item }}"
+    state: absent
+  with_items:
     - git
     - gh
