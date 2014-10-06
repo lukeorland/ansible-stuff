@@ -1,0 +1,20 @@
+---
+
+- name: Install mopidy-spotify extension
+  apt: name=mopidy-spotify state=latest
+
+- name: Spotify username
+  ini_file:
+    dest: /home/pi/.config/mopidy/mopidy.conf
+    section: spotify
+    option: username
+    value: orluke
+    backup: yes
+
+#- name: Spotify config
+#  ini_file:
+#    dest: /home/pi/.config/mopidy/mopidy.conf
+#    section: spotify
+#    option: password
+#    value: secret
+#    backup: yes

@@ -1,0 +1,27 @@
+---
+
+- name: apt-key for mopidy repo
+  apt_key:
+    url: https://apt.mopidy.com/mopidy.gpg
+    state: present
+
+- name: Add mopidy repository into sources list.
+  apt_repository:
+    repo: 'deb http://apt.mopidy.com/ stable main contrib non-free'
+    state: present
+
+- name: Add mopidy source repository into sources list.
+  apt_repository:
+    repo: 'deb-src http://apt.mopidy.com/ stable main contrib non-free'
+    state: present
+
+- name: Install mopidy
+  apt: name=mopidy state=latest
+  notify: start mopidy
+
+# TODO: figure this out.
+#- name: Configure mopidy to start at boot.
+#  dpkg_reconfigure:
+#    pkg: mopidy
+#    answers:
+#      mopidy/daemon: true

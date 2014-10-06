@@ -6,3 +6,7 @@ vagrant-debian ansible_ssh_host=localhost ansible_ssh_port=2223
 # run like this:
 #   ansible-playbook -i hosts site.yml --limit macs --connection=local --ask-sudo-pass
 Lukes-Neverware-mba.local
+
+[mopidypi]
+mopidypi.local
+raspberrypi.local

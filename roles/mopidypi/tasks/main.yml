@@ -1,0 +1,10 @@
+---
+
+#- include: timezone.yml  # TODO
+- include: hostname.yml
+- include: rpi.yml
+- include: avahi.yml
+- include: mopidy.yml
+- include: alsa.yml
+- include: spotify.yml
+#- include: moped.yml  # TODO
