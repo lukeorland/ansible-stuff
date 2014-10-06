@@ -50,6 +50,7 @@
     - ssh-copy-id
     - tree
     - wget
+    - ctags
 
 - name: Remove tools
   homebrew:
