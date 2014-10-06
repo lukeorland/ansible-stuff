@@ -45,6 +45,8 @@
 - name: Install useful tools
   homebrew:
     name: "{{ item }}"
-    state: present
+    state: latest
   with_items:
     - ssh-copy-id
+    - git
+    - gh
