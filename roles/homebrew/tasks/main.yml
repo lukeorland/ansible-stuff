@@ -48,11 +48,11 @@
     state: latest
   with_items:
     - coreutils
+    - ctags
     - md5sha1sum
     - ssh-copy-id
     - tree
     - wget
-    - ctags
 
 - name: Remove tools
   homebrew:
