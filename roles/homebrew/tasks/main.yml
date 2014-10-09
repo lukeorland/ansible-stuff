@@ -47,6 +47,8 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - coreutils
+    - md5sha1sum
     - ssh-copy-id
     - tree
     - wget
