@@ -5,16 +5,18 @@
 
 - name: Spotify username
   ini_file:
-    dest: /home/pi/.config/mopidy/mopidy.conf
+    dest: "{{ mopidy_conf_path }}"
     section: spotify
     option: username
     value: orluke
     backup: yes
+  notify: restart mopidy service
 
-#- name: Spotify config
-#  ini_file:
-#    dest: /home/pi/.config/mopidy/mopidy.conf
-#    section: spotify
-#    option: password
-#    value: secret
-#    backup: yes
+- name: Spotify password
+  ini_file:
+    dest: "{{ mopidy_conf_path }}"
+    section: spotify
+    option: password
+    value: CHANGE ME
+    backup: yes
+  notify: restart mopidy service

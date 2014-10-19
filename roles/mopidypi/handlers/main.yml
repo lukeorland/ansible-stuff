@@ -5,3 +5,7 @@
 
 - name: start mopidy
   shell: mopidy
+
+# TODO: test this.
+- name: restart mopidy service
+  service: name=mopidy state=restarted

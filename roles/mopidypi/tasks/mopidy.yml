@@ -25,3 +25,15 @@
 #    pkg: mopidy
 #    answers:
 #      mopidy/daemon: true
+
+- name: MPD hostname
+  ini_file:
+    dest: "{{ mopidy_conf_path }}"
+    section: mpd
+    option: hostname
+    value: "::"
+    backup: yes
+  notify: restart mopidy service
+
+- name: Started mopidy service
+  service: name=mopidy state=started enabled=yes
