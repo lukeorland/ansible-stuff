@@ -1,0 +1,8 @@
+---
+
+- name: Install sshpass
+  command: sshpass -V
+  register: sshpass_version
+  failed_when: no
+  changed_when: sshpass_version.rc != 0
+  notify: install sshpass

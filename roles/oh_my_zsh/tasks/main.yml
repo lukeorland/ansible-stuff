@@ -1,0 +1,29 @@
+---
+
+# FIXME: the lineinfile task doesn't work because of permissions
+#- name: Install zsh via homebrew
+#  homebrew:
+#    name: zsh
+#    state: latest
+#    update_homebrew: yes
+#  register: install_homebrew
+#
+#- name: Non-standard zsh shell
+#  lineinfile:
+#    dest: /etc/shells
+#    line: /usr/local/bin/zsh
+#
+#- name: Change shell to zsh
+#  shell: chsh -s /usr/local/bin/zsh orluke
+
+- name: install oh-my-zsh
+  shell: curl -L http://install.ohmyz.sh | sh
+  args:
+    creates: "~{{ mac_user }}/.oh-my-zsh"
+
+- name: zsh prompt
+  lineinfile:
+    line: ZSH_THEME="steeef"
+    regexp: ZSH_THEME=.*
+    dest: "~{{ mac_user }}/.zshrc"
+

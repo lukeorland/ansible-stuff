@@ -1,0 +1,13 @@
+---
+
+# NB: The extra_args bit was required for resolving an issue with flake8 similar
+# to https://github.com/onyxfish/csvkit/issues/266#issuecomment-41520101
+- name: Install pip packages that are useful for dev work
+  pip: name={{ item }} state=present extra_args='--upgrade'
+  with_items:
+    - setuptools
+    - flake8
+    - ipython
+    - rpdb
+    - nose2
+    - nose

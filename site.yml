@@ -1,23 +1,16 @@
 ---
 # This playbook deploys the whole application stack in this site.
 
-# Login as orluke
-- name: Configure and deploy a Mac
-  hosts: macs
-  sudo_user: orluke
-  user: orluke
-
-  roles:
-    - { role: homebrew, mac_user: orluke }
-
 # Login as lorland
 - name: Configure and deploy a Mac
   hosts: macs
-  sudo_user: lorland
-  user: lorland
-
+  sudo_user: orluke
   roles:
-    - { role: homebrew, mac_user: lorland }
+    - { role: homebrew, sudo: no }
+    - { role: mac_dev, sudo: no }
+    - { role: pip_dev, sudo: yes }
+    - { role: oh_my_zsh, mac_user: lorland }
+    - { role: oh_my_zsh, mac_user: orluke }
 
 - name: configure and deploy the ubuntu command-line dev boxes
   hosts: ubuntu_dev_cli_boxes
